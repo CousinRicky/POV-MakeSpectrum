@@ -1,0 +1,3 @@
+Generates reflective spectral power distribution curves for spectrum-based rendering without recourse to a spectrophotometer. The user submits a color specification, and a spline is returned. Some of the curves are designed to resemble reflection spectra of typical non-metallic surfaces.
+
+The user can then convert the splines to POV-Ray's native RGBFT format using other tools, such as Lightsys IV and SpectralRender.

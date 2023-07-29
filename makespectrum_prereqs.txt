@@ -1,0 +1,1 @@
+A tool of the user's choice (such as Lightsys IV or SpectralRender) is required to convert the results to POV-Ray's native format. The demo scenes require Lightsys IV, and two of the demos require SpectralRender and POV-Ray 3.7.
