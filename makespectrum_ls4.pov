@@ -1,29 +1,32 @@
-/* makespectrum_ls4.pov version 1.0
+/* makespectrum_ls4.pov version 1.1
  * Persistence of Vision Raytracer scene description file
- * POV-Ray Object Collection demo
+ * A proposed POV-Ray Object Collection demo
  *
  * Demo of makespectrum.inc's non-RGB SPDs using Lightsys IV.
  * Download Lightsys IV at:
- *   http://www.ignorancia.org/index.php/technical/lightsys/
+ *   http://www.ignorancia.org/index.php?page=lightsys
+ *     or
+ *   https://news.povray.org/64cffd99%40news.povray.org
  *
- * Copyright (C) 2023 Richard Callwood III.  Some rights reserved.
- * This file is licensed under the terms of the CC-LGPL
- * a.k.a. the GNU Lesser General Public License version 2.1.
+ * Copyright (C) 2023, 2025 Richard Callwood III.  Some rights reserved.
+ * This file is licensed under the terms of the GNU-LGPL.
  *
- * This library is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Lesser General Public
- * License version 2.1 as published by the Free Software Foundation.
+ * This library is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as published
+ * by the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
  *
  * This library is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  Please
- * visit https://www.gnu.org/licenses/old-licenses/lgpl-2.1.html for
- * the text of the GNU Lesser General Public License version 2.1.
+ * visit https://www.gnu.org/licenses/lgpl-3.0.html for the text
+ * of the GNU Lesser General Public License version 3.
  *
- * Vers  Date         Comments
- * ----  ----         --------
- *       2014-Oct-18  Created.
- * 1.0   2023-Jul-29  Completed and uploaded.
+ * Vers.  Date         Comments
+ * -----  ----         --------
+ *        2014-Oct-18  Created.
+ * 1.0    2023-Jul-29  Completed and uploaded.
+ * 1.1    2025-Oct-04  The license is upgraded to LGPL 3.
  */
 #version max (3.5, min (3.8, version));
 

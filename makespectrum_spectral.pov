@@ -1,6 +1,6 @@
-/* makespectrum_spectral.pov version 1.0
+/* makespectrum_spectral.pov version 1.1
  * Persistence of Vision Raytracer scene description file
- * POV-Ray Object Collection demo
+ * A proposed POV-Ray Object Collection demo
  *
  * Demo of makespectrum.inc's non-RGB SPDs using SpectralRender.
  * Download SpectralRender at:
@@ -8,26 +8,30 @@
  * Download modified SpectralRender files for gamut mapping at:
  *   https://github.com/CousinRicky/POV-SpectralRender-mods
  * Download Lightsys IV at:
- *   http://www.ignorancia.org/index.php/technical/lightsys/
+ *   http://www.ignorancia.org/index.php?page=lightsys
+ *     or
+ *   https://news.povray.org/64cffd99%40news.povray.org
  *
- * Copyright (C) 2023 Richard Callwood III.  Some rights reserved.
- * This file is licensed under the terms of the CC-LGPL
- * a.k.a. the GNU Lesser General Public License version 2.1.
+ * Copyright (C) 2023, 2025 Richard Callwood III.  Some rights reserved.
+ * This file is licensed under the terms of the GNU-LGPL.
  *
- * This library is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Lesser General Public
- * License version 2.1 as published by the Free Software Foundation.
+ * This library is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as published
+ * by the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
  *
  * This library is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  Please
- * visit https://www.gnu.org/licenses/old-licenses/lgpl-2.1.html for
- * the text of the GNU Lesser General Public License version 2.1.
+ * visit https://www.gnu.org/licenses/lgpl-3.0.html for the text
+ * of the GNU Lesser General Public License version 3.
  *
- * Vers  Date         Comments
- * ----  ----         --------
- *       2014-Oct-18  Created.
- * 1.0   2023-Jul-29  Completed and uploaded.
+ * Vers.  Date         Comments
+ * -----  ----         --------
+ *        2014-Oct-18  Created.
+ * 1.0    2023-Jul-29  Completed and uploaded.
+ *        2024-Dec-22  Y-based gamut mapping is recognized.
+ * 1.1    2025-Oct-04  The license is upgraded to LGPL 3.
  */
 // Preview:
 //   +W640 +H480 +A Declare=Preview=1 Declare=Photons=0 Declare=Rad=0
@@ -151,7 +155,7 @@
         UV, <0.015, 0.015>, yes, 1
       )
     #end
-    #if (file_exists ("SpectralComposer-gm2.inc"))
+    #if (file_exists ("SpectralComposer.inc"))
       Annotate ("Conversion by SpectralRender (gamut mapped)", <0, 1>)
     #else
       Annotate ("Conversion by SpectralRender", <0, 1>)
@@ -163,10 +167,11 @@
 #else
 
   #declare FName = "makespectrum_spectral"
-  #if (file_exists ("SpectralComposer-gm2.inc"))
-    #debug "Using modified SpectralComposer for gamut mapping.\n"
+  #if (file_exists ("SpectralComposer.inc"))
     // from https://github.com/CousinRicky/POV-SpectralRender-mods
-    #include "SpectralComposer-gm2.inc"
+    // version RC3-0.22-3 or later; otherwise, use SpectralComposer-gm2.inc
+    #declare GamutMap = 4; // luminance-based
+    #include "SpectralComposer.inc"
   #else
     // from SpectralRender
     // IMPORTANT:

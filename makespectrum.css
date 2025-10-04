@@ -1,11 +1,10 @@
 /* makespectrum.css
  *
- * Copyright © 2023 Richard Callwood III.  Some rights reserved.
- * This file is licensed under the terms of the GNU LGPL 2.1.
- * See https://www.gnu.org/licenses/old-licenses/lgpl-2.1.html for the text of
- * the license.
+ * Copyright © 2023, 2025 Richard Callwood III.  Some rights reserved.
+ * This file is licensed under the terms of the GNU-LGPL, version 3 or later.
+ * See https://www.gnu.org/licenses/lgpl-3.0.html for the text of the license.
  *
- * Version 1.0  2023-Jul-29
+ * Version 1.1  2025-Oct-04
  */
 a
 { text-decoration:none;
@@ -167,15 +166,7 @@ var
 { font-family:serif;
   letter-spacing:0;
 }
-/*
-ul ul ul { list-style:circle; }
-var { font-family:serif; }
-pre var
-{ letter-spacing:0;
-  line-height:1;
-  font-size:95%;
-}
- */
+
 .demo
 { float:right;
   margin:0px 0px 0.3em 0.3em;

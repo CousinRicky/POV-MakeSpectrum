@@ -2,13 +2,13 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>MakeSpectrum 1.0 User Manual | POV-Ray Object Collection (Proposed)</title>
+<title>MakeSpectrum 1.1 User Manual | POV-Ray Object Collection (Proposed)</title>
 <link rel="stylesheet" type="text/css" href="makespectrum.css">
 </head>
 
 <body>
 
-<h1>MakeSpectrum 1.0 User&nbsp;Manual</h1>
+<h1>MakeSpectrum 1.1 User&nbsp;Manual</h1>
 
 <h2>Abstract</h2>
 
@@ -16,12 +16,16 @@
 <a href="makespectrum.jpg" class="demo"><img src="makespectrum_thumbnail.jpg" title="Montage of larger demo images" alt="[Thumbnail which links to a montage of larger demo images]"></a>
 MakeSpectrum is a library module proposed for the
 <a href="https://www.povray.org/">Persistence of Vision Raytracer (POV-Ray)</a>
-<a href="http://lib.povray.org/">Object Collection</a>
-that generates reflective spectral power distribution (SPD) curves. The module is intended for those doing spectrum-based rendering but who have no easy access to or desire to use a spectrophotometer. The user submits a color specification, and a spline is returned.
+<a href="https://lib.povray.org/">Object Collection</a>
+that generates reflective spectral power distribution (SPD) curves.
+The module is intended for those doing spectrum-based rendering but who have no easy access to or desire to use a spectrophotometer.
+The user submits a color specification, and a spline is returned.
 
-The user can then use <a href="#Prereqs">existing tools</a> to convert the splines to POV-Ray’s native RGBFT format. The demo scene description files illustrate two ways to convert the curves to colors.
+The user can then use <a href="#Prereqs">existing tools</a> to convert the splines to POV-Ray’s native RGBFT format.
+The demo scene description files illustrate two ways to convert the curves to colors.
 
-<p>The spectral curves are intended as pigment or interior colors. If used for emission or as light sources, the colors will not be as expected.
+<p>The spectral curves are intended as pigment or interior colors.
+If used for emission or as light sources, the colors will not be as expected.
 
 <hr>
 
@@ -102,9 +106,6 @@ The user can then use <a href="#Prereqs">existing tools</a> to convert the splin
   <th>File</th>
   <th>Description</th>
  </tr><tr>
-  <td><code>README<var>nnnnnn</var>.html</code></td>
-  <td>Important information about using the POV-Ray Object Collection</td>
- </tr><tr>
   <td><code>makespectrum_description.txt</code></td>
   <td>A brief description of MakeSpectrum</td>
  </tr><tr>
@@ -115,15 +116,13 @@ The user can then use <a href="#Prereqs">existing tools</a> to convert the splin
   <td>Prerequisites</td>
  </tr><tr>
   <td><code>makespectrum.css</code></td>
-  <td rowspan="3">Other administrative files</td>
- </tr><tr>
-  <td><code>cc-LGPL-a.png</code></td>
- </tr><tr>
-  <td><code>Version<var>nnnnnn</var>.js</code></td>
+  <td>Formatting for this user manual</td>
  </tr>
 </table>
 
-<p>The italicized <var>nnnnnn</var> in some of the file names represents the 6-digit number that is in the name of the <code>.zip</code> file as downloaded from <a href="http://lib.povray.org/">lib.povray.org</a>. If you downloaded this module from some other repository, the files <code>cc-LGPL-a.png</code>, <code>README<var>nnnnnn</var>.html</code>, and <code>Version<var>nnnnnn</var>.js</code> may not be present. Please see the <a href="https://web.archive.org/web/20120419111948/http://lib.povray.org/usersguide/02using.html">Object Collection User’s Guide</a> if <code>README</code><var>nnnnnn</var><code>.html</code> is not present.
+<p>Depending on where you obtained this library, there may be other administrative files included with this download,
+including one named <code>README<var>{series-of-digits}</var>.html</code> which contains important information about using the POV-Ray Object Collection.
+Please see the <a href="https://lib.povray.org/usersguide/userguide.html">Object Collection User Guide</a> if this file is not present.
 
 <p><a href="#toc">Table of contents</a><hr>
 
@@ -132,38 +131,55 @@ The user can then use <a href="#Prereqs">existing tools</a> to convert the splin
 <ul>
  <li><strong>POV-Ray 3.5 or later:</strong> required by the MakeSpectrum include file.
   <ul>
-   <li>An additional tool of the user’s choice is required to convert the output to POV-Ray’s native RGBFT format. The demo scenes use two such tools, as described next.
+   <li>An additional tool of the user’s choice is required to convert the output to POV-Ray’s native RGBFT format.
+    The demo scenes use two such tools, as described next.
   </ul>
- <li><strong><a href="http://www.ignorancia.org/index.php/technical/lightsys/" target="_blank">Lightsys version 4</a> (Lightsys&nbsp;IV):</strong> required by all three demo scenes.
+ <li><strong><a href="http://www.ignorancia.org/index.php?page=lightsys" target="_blank">Lightsys IV</a></strong>
+  (<a href="https://news.povray.org/64cffd99%40news.povray.org" target="_blank">mirror</a> and
+  <a href="https://web.archive.org/web/20230609145607/http://www.ignorancia.org/index.php/technical/lightsys/" target="_blank">documentation archive</a>):
+  required by all three demo scenes.
   <ul>
-   <li><strong>Do not</strong> save Lightsys to your Object Collection folder, but do make sure that it is in your <a href="https://wiki.povray.org/content/Reference:Scene_Parsing_Options#Library_Paths">library path</a>.
-   <li>Note: As of MakeSpectrum 1.0, the Lightsys website was having technical difficulties. A <a href="https://news.povray.org/64cffd99%40news.povray.org" target="_blank">download is available here</a>, and the <a href="https://web.archive.org/web/20230609145607/http://www.ignorancia.org/index.php/technical/lightsys/" target="_blank">documentation is archived</a> on the Wayback Machine. This is shared under a Creative Commons Attribution ShareAlike license, © Jaime Vives Piqueres.
+   <li><strong>Do not</strong> save Lightsys to your Object Collection folder, but do make sure that it is in your
+    <a href="https://wiki.povray.org/content/Reference:Scene_Parsing_Options#Library_Paths">library path</a>.
   </ul>
- <li><strong><a href="https://www.lilysoft.org/CGI/SR/Spectral%20Render.htm" target="_blank">SpectralRender</a>:</strong> required by demo scenes <code>makespectrum_rgb.pov</code> and <code>makespectrum_spectral.pov</code>.
+ <li><strong><a href="https://www.lilysoft.org/CGI/SR/Spectral%20Render.htm" target="_blank">SpectralRender</a>:</strong>
+  required by demo scenes <code>makespectrum_rgb.pov</code> and <code>makespectrum_spectral.pov</code>.
   <ul>
    <li><strong>Do not</strong> save SpectralRender to your Object Collection folder, but do make sure that it is in your library path.
   </ul>
- <li><strong>POV-Ray 3.7 or later:</strong> required by demo scenes <code>makespectrum_rgb.pov</code> and <code>makespectrum_spectral.pov</code>, and by any other scenes that use SpectralRender.
+ <li><strong>POV-Ray 3.7 or later:</strong>
+  required by demo scenes <code>makespectrum_rgb.pov</code> and <code>makespectrum_spectral.pov</code>, and by any other scenes that use SpectralRender.
 </ul>
 
 <h4>Optional</h4>
 
 <ul>
- <li><strong><a href="https://github.com/CousinRicky/POV-SpectralRender-mods" target="_blank">Modifications to SpectralRender</a>:</strong> required for gamut-mapped renders of any scenes that use SpectralRender.
+ <li><strong><a href="https://github.com/CousinRicky/POV-SpectralRender-mods" target="_blank">Modifications to SpectralRender</a>:</strong>
+  required for gamut-mapped renders of any scenes that use SpectralRender.
   <ul>
-   <li>These modifications may be saved in your SpectralRender folder. They will not overwrite the original SpectralRender files.
+   <li>These modifications may be saved in your SpectralRender folder.
+    They will not overwrite the original SpectralRender files.
   </ul>
 </ul>
 
 <h3 id="Compliance">Namespace Compliance</h3>
 
-<p>All file names in this module and all global and local identifiers defined in <code>makespectrum.inc</code> comply fully with the <a href="https://news.povray.org/470b46cb%241%40news.povray.org">Object Collection naming standards</a>, as <a href="https://news.povray.org/48ba92e8%241%40news.povray.org">revised August 2008</a> and <a href="https://news.povray.org/povray.object-collection/thread/%3Cweb.5018a69dae7e89cb85de7b680%40news.povray.org%3E/">proposed August 2012</a>. The files in this module may be safely stored in the same folder as other fully compliant Object Collection modules.
+<p>All file names in this module and all global and local identifiers defined in <code>makespectrum.inc</code> comply fully with the
+<a href="https://news.povray.org/470b46cb%241%40news.povray.org">Object Collection naming standards</a>, as
+<a href="https://news.povray.org/48ba92e8%241%40news.povray.org">revised August 2008</a> and
+<a href="https://news.povray.org/povray.object-collection/thread/%3Cweb.5018a69dae7e89cb85de7b680%40news.povray.org%3E/">proposed August 2012</a>.
+The files in this module may be safely stored in the same folder as other fully compliant Object Collection modules.
 
-<p>The reserved prefixes for this module are “<code>MakeSpectrum</code>” and “<code>MakeSp</code>,” including any uppercase and lowercase variants. To avoid conflicts, do not introduce into your scene description file any identifiers with either of these prefixes as names, or any identifiers that start with either of these prefixes plus an underscore.
+<p>The reserved prefixes for this module are “<code>MakeSpectrum</code>” and “<code>MakeSp</code>,” including any uppercase and lowercase variants.
+To avoid conflicts, do not introduce into your scene description file any identifiers with either of these prefixes as names, or any identifiers that start with either of these prefixes plus an underscore.
 
-<p>File <code>makespectrum.inc</code> uses the standard include files <code>colors.inc</code> and <code>math.inc</code>. The identifier <code>View_POV_Include_Stack</code> from the standard include file <code>debug.inc</code> is referenced by <code>makespectrum.inc</code>, although <code>debug.inc</code> itself is not used.
+<p>File <code>makespectrum.inc</code> uses the standard include files <code>colors.inc</code> and <code>math.inc</code>.
+The identifier <code>View_POV_Include_Stack</code> from the standard include file <code>debug.inc</code> is referenced by <code>makespectrum.inc</code>, although <code>debug.inc</code> itself is not used.
 
-<p>Lightsys and SpectralRender are not part of the Object Collection, so if you use these, there is no guarantee that their identifiers will not conflict with those of compliant Object Collection modules. If necessary, most Lightsys identifiers can be destroyed by macro <code>CIE_ReleaseMemory()</code> after there is no further use of the features of Lightsys and SpectralRender. (The identifiers that remain are those defined in <code>lightsys.inc</code>, <code>lightsys_colors.inc</code>, and <code>lightsys_constants.inc</code>.) SpectralRender does not have a similar deallocation macro, but as of the release of MakeSpectrum 1.0, its identifiers do not conflict with any compliant Object Collection modules.
+<p>Lightsys and SpectralRender are not part of the Object Collection, so if you use these, there is no guarantee that their identifiers will not conflict with those of compliant Object Collection modules.
+If necessary, most Lightsys identifiers can be destroyed by macro <code>CIE_ReleaseMemory()</code> after there is no further use of the features of Lightsys and SpectralRender.
+(The identifiers that remain are those defined in <code>lightsys.inc</code>, <code>lightsys_colors.inc</code>, and <code>lightsys_constants.inc</code>.)
+SpectralRender does not have a similar deallocation macro, but as of the release of MakeSpectrum 1.1, its identifiers do not conflict with any compliant Object Collection modules.
 
 <h3 id="Usage">Usage</h3>
 
@@ -173,16 +189,20 @@ The user can then use <a href="#Prereqs">existing tools</a> to convert the splin
   <p>Including the file more than once is harmless, though unnecessary.
  <li><p>Set the scene’s assumed gamma to one:
   <pre>global_settings { assumed_gamma 1 }</pre>
-  <p>Rationale: This is the only physically realistic setting. Although this leads to colors that are unexpectedly pale, MakeSpectrum is set up to compensate. See the <a href="#Gamma">Gamma section</a> for more information.
+  <p>Rationale: This is the only physically realistic setting.
+   Although this leads to colors that are unexpectedly pale, MakeSpectrum is set up to compensate.
+   See the <a href="#Gamma">Gamma section</a> for more information.
  <li><p>Set the default diffuse to one. In POV-Ray 3.7 or later:
   <pre>#default { diffuse 1 ambient rgb <var>MyAmbientColor</var> emission 0 }</pre>
   <p>For earlier versions of POV-Ray:
   <pre>#default { diffuse 1 ambient rgb (<var>IsRadiosityUsed</var>? 0: <var>MyAmbientColor</var>) }</pre>
   <p>where <var>MyAmbientColor</var> is your global ambient lighting color; and <var>IsRadiosityUsed</var> is <code>true</code> if you are using radiosity, <code>false</code> if not.
-  <p>Rationale: MakeSpectrum applies diffuse levels to the SPDs themselves; therefore, at the finish level, the diffuse should be set at full reflectance. MakeSpectum’s default diffuse matches POV-Ray’s factory default, but this can be changed.
+  <p>Rationale: MakeSpectrum applies diffuse levels to the SPDs themselves; therefore, at the finish level, the diffuse should be set at full reflectance.
+   MakeSpectum’s default diffuse matches POV-Ray’s factory default, but this can be changed.
 </ul>
 
-<p>Through at least POV-Ray 3.8, a warning will be issued that the experimental feature spline is used. This is normal and expected.
+<p>Through at least POV-Ray 3.8, a warning will be issued that the experimental feature spline is used.
+This is normal and expected.
 
 <p>If your scene defines a large number of spectra, they may take a few seconds to parse.
 
@@ -196,13 +216,16 @@ The user can then use <a href="#Prereqs">existing tools</a> to convert the splin
  </tr><tr>
   <td><code>MakeSp_Diffuse</code></td>
   <td>float</td>
-  <td>An automatic multiplier for the color arguments of many of the macros. This operates like <code>#default { finish { diffuse } }</code>, except that the diffuse value is applied directly to the color, rather than the finish.
+  <td>An automatic multiplier for the color arguments of many of the macros.
+   This operates like <code>#default { finish { diffuse } }</code>, except that the diffuse value is applied directly to the color, rather than the finish.
   </td>
   <td>0.6</td>
  </tr><tr>
   <td><code>MakeSp_Gamma</code></td>
   <td>float</td>
-  <td>A <a href="#Gamma">gamma or non-linear decoding</a> that many of the macros will automatically apply to their color arguments. Use a positive number for a power gamma, or <code>MAKESP_SRGB</code> for the <a href="https://en.wikipedia.org/wiki/SRGB#Transfer_function_%28%22gamma%22%29" target="_blank">sRGB transfer function</a>. Zero or a negative value will cause a fatal parse error.</td>
+  <td>A <a href="#Gamma">gamma or non-linear decoding</a> that many of the macros will automatically apply to their color arguments.
+   Use a positive number for an exponential gamma, or <code>MAKESP_SRGB</code>, <code>MAKESP_BT709</code>, or <code>MAKESP_BT2020</code> for a special non-linear formula.
+   Zero or a negative value will cause a fatal parse error.</td>
   <td><code>MAKESP_SRGB</code></td>
  </tr>
 </table>
@@ -211,41 +234,79 @@ The user can then use <a href="#Prereqs">existing tools</a> to convert the splin
 
 <h2 id="Gamma">Gamma</h2>
 
-<p>MakeSpectrum works in <a href="https://blog.johnnovak.net/2016/09/21/what-every-coder-should-know-about-gamma/
-" target="_blank">linear color space</a>, and works best with <code>assumed_gamma 1</code>; this is the <em>only</em> physically realistic setting. However, colors are traditionally specified with <a href="https://wiki.povray.org/content/Documentation:Tutorial_Section_3.3#Gamma_Handling">non-linear</a> formats, and most look too pale with <code>assumed_gamma 1</code>. The macros in MakeSpectrum can decode these colors so that they look correct with <code>assumed_gamma 1</code>; but in order to decode the colors properly, the macros must know how the colors were encoded. This is specified either via a <code>Gamma</code> argument to the macros or via the global parameter <code>MakeSp_Gamma</code>.
+<p>MakeSpectrum works in
+<a href="https://blog.johnnovak.net/2016/09/21/what-every-coder-should-know-about-gamma/" target="_blank">linear color space</a>,
+and works best with <code>assumed_gamma 1</code>; this is the <em>only</em> physically realistic setting.
+However, colors are traditionally specified with
+<a href="https://wiki.povray.org/content/Documentation:Tutorial_Section_3.3#Gamma_Handling">non-linear</a> formats,
+and most such colors look too pale with <code>assumed_gamma 1</code>.
+The macros in MakeSpectrum can decode these colors so that they look correct with <code>assumed_gamma 1</code>;
+but in order to decode the colors properly, the macros must know how the colors were encoded.
+This is specified either via a <code>Gamma</code> argument to the macros or via the global parameter <code>MakeSp_Gamma</code>.
 
-<p>By decoding gamma into the SPD itself, rather than at the <code>global_settings</code> level, MakeSpectrum can use traditional colors while maintaining physical realism. Using <code>assumed_gamma 1</code> should also make predictable lighting conditions easier to set up in your scene.
+<p>By decoding gamma into the SPD itself, rather than at the <code>global_settings</code> level, MakeSpectrum can use traditional colors while maintaining physical realism.
+Using <code>assumed_gamma 1</code> should also make predictable lighting conditions easier to set up in your scene.
 
-<p>The gamma value must be either a positive number or a code for a special transfer function. All other values will result in a parse error. At this time, <code>MAKESP_SRGB</code> is the only supported special code.
+<p>The gamma value must be either a positive number or a code for a special non-linear formula, or <dfn>transfer function</dfn>.
+All other values will result in a parse error.
+The special codes are <code>MAKESP_SRGB</code>, <code>MAKESP_BT709</code>, and <code>MAKESP_BT2020</code>.
 
 <p>The following are typical gamma values:
 
 <dl>
  <dt><strong><code>MAKESP_SRGB</code></strong>
- <dd>This is a special code for the <a href="https://en.wikipedia.org/wiki/SRGB#Transfer_function_%28%22gamma%22%29" target="_blank">sRGB transfer function</a>, and corresponds to the <code>srgb</code> series of keywords in RGB rendering. It is appropriate for most colors, and is the default setting for the global parameter <code>MakeSp_Gamma</code>. Do not use the <code>srgb</code> series of keywords with <code>MAKESP_SRGB</code>; this will cause the color to be decoded twice!
+ <dd>This is a special code for the
+  <a href="https://en.wikipedia.org/wiki/SRGB#Transfer_function_%28%22gamma%22%29" target="_blank">sRGB transfer function</a>,
+  and corresponds to the <code>srgb</code> series of keywords in RGB rendering.
+  It is appropriate for most colors, and is the default setting for the global parameter <code>MakeSp_Gamma</code>.
+  Do not use the <code>srgb</code> series of keywords with <code>MAKESP_SRGB</code>; this will cause the color to be decoded twice!
  <dt><strong>2.2</strong>
- <dd>This was the typical encoding prior to sRGB, and is very similar. It is probably the encoding assumed by the named colors in <code>colors.inc</code>. Do not use the <code>srgb</code> series of keywords with gamma 2.2, as this will cause the color to be decoded twice.
+ <dd>This was the typical encoding prior to sRGB, and is very similar.
+  It is probably the encoding assumed by the named colors in <code>colors.inc</code>.
+  Do not use the <code>srgb</code> series of keywords with gamma 2.2, as this will cause the color to be decoded twice.
  <dt><strong>1.0</strong>
- <dd>Use this if you are already accustomed to <code>assumed_gamma 1</code>. If you choose 1.0 for your MakeSpectrum gamma and have already been using the <code>srgb</code> series of keywords, then you should continue to use these keywords with MakeSpectrum.
+ <dd>Use this if you are already accustomed to <code>assumed_gamma 1</code>.
+  If you choose 1.0 for your MakeSpectrum gamma and have already been using the <code>srgb</code> series of keywords, then you should continue to use these keywords with MakeSpectrum.
  <dt><strong>1.8</strong>
- <dd>This is popular among graphic designers, and was used by old Macintosh displays. Do not use the <code>srgb</code> series of keywords with gamma 1.8, as this will cause the color to be decoded twice.
+ <dd>This is popular among graphic designers, and was used by old Macintosh displays.
+  Do not use the <code>srgb</code> series of keywords with gamma 1.8, as this will cause the color to be decoded twice.
+ <dt><strong><code>MAKESP_BT709</code></strong> &amp; <strong><code>MAKESP_BT2020</code></strong>
+ <dd>These are special codes for the
+  <a href="https://en.wikipedia.org/wiki/Rec._2020#Transfer_characteristics" target="_blank">BT.709/BT.2020 transfer function</a> used by HDTV.
+  (These two functions differ only in precision, and since MakeSpectrum exceeds the precision of both, the distinction becomes moot.)
+  Do not use the <code>srgb</code> series of keywords with these codes; this will cause the color to be decoded twice.
 </dl>
 
-<p>Note that these gamma applications are for the tracing phase only. They do not apply to the command line output options <code>Display_Gamma</code> and <code>File_Gamma</code>, which should remain at their usual settings.
+<p>Note that these gamma applications are for the tracing phase only.
+They do not apply to the command line output options <code>Display_Gamma</code> and <code>File_Gamma</code>, which should remain at their usual settings.
 
 <p><a href="#toc">Table of contents</a><hr>
 
 <h2 id="Properties">Colors and SPD Properties</h2>
 
+<p>MakeSpectrum creates spectral power distribution (SPD) curves in the form of a spline.
+The spline argument is the wavelength in nanometers, and the <code>.y</code> component is the reflection amount at the corresponding wavelength.
+
 <p>Two styles of SPD curves can be created: RGB composites, and more natural curves.
 
 <ul>
- <li>RGB composites are constructed by combining the curves of red, green, and blue primaries. These are created by the spline macros prefixed with <code>MakeSp_</code> that <em>do not</em> have <code>Meta</code> in the name.
+ <li>RGB composites are constructed by combining the curves of red, green, and blue primaries.
+  These are created by the spline macros prefixed with <code>MakeSp_</code> that <em>do not</em> have <code>Meta</code> in the name.
 
- <li>The natural curves are designed to resemble reflection spectra of typical non-metallic surfaces. Macro <code>MakeSpectrum()</code> is the basic macro for creating such SPDs; however, <code>MakeSpectrum()</code>’s output does not correspond to familiar RGB specifications. SPDs that yield colors resembling those of RGB composites, called <dfn>metamers</dfn>, can be created with the macros whose names start with <code>MakeSp_Meta_</code>.
+ <li>The “natural” curves are designed to resemble reflection spectra of typical non-metallic surfaces.
+  Macro <code>MakeSpectrum()</code> is the basic macro for creating such SPDs;
+  however, <code>MakeSpectrum()</code>’s output does not correspond to familiar RGB specifications.
+  SPDs that yield colors resembling those of RGB composites, or <dfn>metamers</dfn> of the RGB colors, can be created with the macros whose names start with <code>MakeSp_Meta_</code>.
 </ul>
 
-<p>The SPDs are calibrated using an integration step size of 1 nanometer. Larger step sizes will reduce the accuracy of the hue and saturation of the colors; the RGB composites are especially sensitive to this. Lightsys IV defaults to 5 nanometers, but this can be changed by setting the parameter <code>CIE_IntegralStep</code>. SpectralRender is fixed at 10 nanometers.
+<p>Note that metamerism is affected by the lighting environment.
+An RGB composite curve and a “natural” curve that are metamers of each other under one light may look different from each other under a different light.
+
+<p>The SPDs are calibrated using an integration step size of 1 nanometer.
+Larger step sizes will reduce the accuracy of the hue and saturation of the colors;
+the RGB composites are especially sensitive to this.
+Lightsys IV defaults to 5 nanometers, but this can be changed by setting the parameter <code>CIE_IntegralStep</code>.
+SpectralRender is fixed at 10 nanometers.
 
 <p><a href="#toc">Table of contents</a><hr>
 
@@ -253,21 +314,34 @@ The user can then use <a href="#Prereqs">existing tools</a> to convert the splin
 
 <h3>Parse Warnings</h3>
 
-<p>In order to provide boundaries for physically realistic renders, parse warnings are issued for color inputs and reflection outputs outside the range 0...1. Diffuse values that are non-positive or greater than one will also cause parse warnings. In order to avoid discouraging creativity, these messages are kept at the warning level, and will not abort the render.
+<p>In order to provide boundaries for physically realistic renders, parse warnings are issued for color inputs and reflection outputs outside the range 0...1.
+Diffuse values that are non-positive or greater than one will also cause parse warnings.
+In order to avoid discouraging creativity, these messages are kept at the warning level, and will not abort the render.
 
-<p>Note that because the macros whose names start with <code>MakeSp_Meta_</code> do not create their splines as the sum of red, green, and blue curves, some RGB colors are unattainable as physically realistic reflective SPDs. For these macros, a nominally valid RGB, HSL, or HSV input may result in reflection outputs that are not physically possible, i.e., surfaces with negative reflection or that reflect more light than they receive. Conversely, some nominally invalid inputs may result in physically possible reflective SPDs. If you wish to keep to physically realistic renders with these macros, remember to check the message pane for warnings.
+<p>The macros set two flag variables:
+<ul>
+ <li><code>MakeSp_Negative</code> is set to <code>true</code> if the SPD is negative at some wavelengths, false if none of the wavelengths are negative.
+ <li><code>MakeSp_Hyper</code> is set to <code>true</code> if the SPD is greater than 1.0 at some wavelengths, that is, if it reflects more light than it receives; or false if none of the wavelengths are greater than 1.0.
+</ul>
+
+<p>Note that because the macros whose names start with <code>MakeSp_Meta_</code> do not create their splines as the sum of red, green, and blue curves, some RGB colors are unattainable as physically realistic reflective SPDs.
+For these macros, a nominally valid RGB, HSL, or HSV input may result in reflection outputs that are not physically possible, i.e., surfaces with negative reflection or that reflect more light than they receive.
+Conversely, some nominally invalid inputs may result in physically possible reflective SPDs.
+If you wish to keep to physically realistic renders with these macros, remember to check the message pane for warnings, or check the variables <code>MakeSp_Hyper</code> and <code>MakeSp_Negative</code> after each macro call.
 
 <h3>Fatal Parse Errors</h3>
 
 <p>An invalid gamma will <em>always</em> result in a fatal parse error.
 
-<p>Some saturation inputs can cause a division by zero in MakeSpectrum’s internal calculations. However, all such inputs are well outside the domain of physically realistic saturation values.
+<p>Some saturation inputs can cause a division by zero in MakeSpectrum’s internal calculations.
+However, all such inputs are well outside the domain of physically realistic saturation values.
 
 <p><a href="#toc">Table of contents</a><hr>
 
 <h2 id="Spline_macros">Spline Macros</h2>
 
-<p>The macros in this section all return a spline with the domain in nanometers. The spline is suitable for use with Lightsys&nbsp;IV, or may be passed to <code>MakeSp_Bins()</code> or <code>MakeSp_SpectralRender()</code> for spectral rendering.
+<p>The macros in this section all return a spline with the domain in nanometers.
+The spline is suitable for use with Lightsys&nbsp;IV, or may be passed to <code>MakeSp_Bins()</code> or <code>MakeSp_SpectralRender()</code> for spectral rendering.
 
 <h3 id="MakeSp_HSL">MakeSp_HSL (hsl_Color)</h3>
 
@@ -351,7 +425,10 @@ The user can then use <a href="#Prereqs">existing tools</a> to convert the splin
 
 <h3 id="MakeSp_Meta_HSL">MakeSp_Meta_HSL (hsl_Color)</h3>
 
-<p>Creates a reflective SPD spline that is a <a href="https://en.wikipedia.org/wiki/Metamerism_(color)" target="_blank">metamer</a> of a hue-saturation-lightness color, but resembles the reflection spectrum of a typical non-metallic surface. It uses the <code>MakeSp_Diffuse</code> and <code>MakeSp_Gamma</code> <a href="#Params">global parameters</a>. Keep in mind that metamerism is affected by the lighting environment.
+<p>Creates a reflective SPD spline that is a
+<a href="https://en.wikipedia.org/wiki/Metamerism_(color)" target="_blank">metamer</a>
+of a hue-saturation-lightness color, but resembles the reflection spectrum of a typical non-metallic surface.
+It uses the <code>MakeSp_Diffuse</code> and <code>MakeSp_Gamma</code> <a href="#Params">global parameters</a>.
 
 <h4>Argument</h4>
 <table>
@@ -367,7 +444,9 @@ The user can then use <a href="#Prereqs">existing tools</a> to convert the splin
 
 <h3 id="MakeSp_Meta_HSL_Args">MakeSp_Meta_HSL_Args (hsl_Color, Gamma, Diffuse)</h3>
 
-<p>Creates a reflective SPD spline that is a <a href="https://en.wikipedia.org/wiki/Metamerism_(color)" target="_blank">metamer</a> of a hue-saturation-lightness color, but resembles the reflection spectrum of a typical non-metallic surface. Keep in mind that metamerism is affected by the lighting environment.
+<p>Creates a reflective SPD spline that is a
+<a href="https://en.wikipedia.org/wiki/Metamerism_(color)" target="_blank">metamer</a>
+of a hue-saturation-lightness color, but resembles the reflection spectrum of a typical non-metallic surface.
 
 <h4>Arguments</h4>
 <table>
@@ -391,7 +470,10 @@ The user can then use <a href="#Prereqs">existing tools</a> to convert the splin
 
 <h3 id="MakeSp_Meta_HSV">MakeSp_Meta_HSV (hsv_Color)</h3>
 
-<p>Creates a reflective SPD spline that is a <a href="https://en.wikipedia.org/wiki/Metamerism_(color)" target="_blank">metamer</a> of a hue-saturation-value color, but resembles the reflection spectrum of a typical non-metallic surface. It uses the <code>MakeSp_Diffuse</code> and <code>MakeSp_Gamma</code> <a href="#Params">global parameters</a>. Keep in mind that metamerism is affected by the lighting environment.
+<p>Creates a reflective SPD spline that is a
+<a href="https://en.wikipedia.org/wiki/Metamerism_(color)" target="_blank">metamer</a>
+of a hue-saturation-value color, but resembles the reflection spectrum of a typical non-metallic surface.
+It uses the <code>MakeSp_Diffuse</code> and <code>MakeSp_Gamma</code> <a href="#Params">global parameters</a>.
 
 <h4>Argument</h4>
 <table>
@@ -407,7 +489,9 @@ The user can then use <a href="#Prereqs">existing tools</a> to convert the splin
 
 <h3 id="MakeSp_Meta_HSV_Args">MakeSp_Meta_HSV_Args (hsv_Color, Gamma, Diffuse)</h3>
 
-<p>Creates a reflective SPD spline that is a <a href="https://en.wikipedia.org/wiki/Metamerism_(color)" target="_blank">metamer</a> of a hue-saturation-value color, but resembles the reflection spectrum of a typical non-metallic surface. Keep in mind that metamerism is affected by the lighting environment.
+<p>Creates a reflective SPD spline that is a
+<a href="https://en.wikipedia.org/wiki/Metamerism_(color)" target="_blank">metamer</a>
+of a hue-saturation-value color, but resembles the reflection spectrum of a typical non-metallic surface.
 
 <h4>Arguments</h4>
 <table>
@@ -431,7 +515,10 @@ The user can then use <a href="#Prereqs">existing tools</a> to convert the splin
 
 <h3 id="MakeSp_Meta_RGB">MakeSp_Meta_RGB (c_Color)</h3>
 
-<p>Creates a reflective SPD spline that is a <a href="https://en.wikipedia.org/wiki/Metamerism_(color)" target="_blank">metamer</a> of an RGB color, but resembles the reflection spectrum of a typical non-metallic surface. It uses the <code>MakeSp_Diffuse</code> and <code>MakeSp_Gamma</code> <a href="#Params">global parameters</a>. Keep in mind that metamerism is affected by the lighting environment.
+<p>Creates a reflective SPD spline that is a
+<a href="https://en.wikipedia.org/wiki/Metamerism_(color)" target="_blank">metamer</a>
+of an RGB color, but resembles the reflection spectrum of a typical non-metallic surface.
+It uses the <code>MakeSp_Diffuse</code> and <code>MakeSp_Gamma</code> <a href="#Params">global parameters</a>.
 
 <h4>Argument</h4>
 <table>
@@ -447,7 +534,9 @@ The user can then use <a href="#Prereqs">existing tools</a> to convert the splin
 
 <h3 id="MakeSp_Meta_RGB_Args">MakeSp_Meta_RGB_Args (c_Color, Gamma, Diffuse)</h3>
 
-<p>Creates a reflective SPD spline that is a <a href="https://en.wikipedia.org/wiki/Metamerism_(color)" target="_blank">metamer</a> of an RGB color, but resembles the reflection spectrum of a typical non-metallic surface. Keep in mind that metamerism is affected by the lighting environment.
+<p>Creates a reflective SPD spline that is a
+<a href="https://en.wikipedia.org/wiki/Metamerism_(color)" target="_blank">metamer</a>
+of an RGB color, but resembles the reflection spectrum of a typical non-metallic surface.
 
 <h4>Arguments</h4>
 <table>
@@ -511,25 +600,39 @@ The user can then use <a href="#Prereqs">existing tools</a> to convert the splin
 
 <h3 id="MakeSpectrum">MakeSpectrum (hrv_Color, Gamma, Min, Max)</h3>
 
-<p>Creates a reflective SPD curve spline designed to resemble the reflection spectrum of a typical non-metallic surface. The diffuse level is assumed to be 1.0.
+<p>Creates a reflective SPD curve spline designed to resemble the reflection spectrum of a typical non-metallic surface.
+The diffuse level is assumed to be 1.0.
 
-<p><code>MakeSpectrum()</code> is a low level macro that makes no attempt attempt to match the saturation or value of any RGB color space; and due to the nature of the curves returned, there is not a direct correspondence to RGB colors. Bluish greens and cyans will be darker and richer than those of most RGB spaces. The maximum color saturations generated by <code>MakeSpectrum()</code> fall outside the sRGB <a href="https://en.wikipedia.org/wiki/Gamut" target="_blank">gamut</a>, so some form of <a href="https://en.wikipedia.org/wiki/Color_management#Gamut_mapping" target="_blank">gamut mapping</a> may be helpful. In practice, though, most natural surfaces are not color saturated.
+<p><code>MakeSpectrum()</code> is a low level macro that makes no attempt to match the saturation or value of any RGB color space;
+and due to the nature of the curves returned, there is not a direct correspondence to RGB colors.
+Bluish greens and cyans will be darker and richer than those of most RGB spaces.
+The maximum color saturations generated by <code>MakeSpectrum()</code> fall outside the sRGB
+<a href="https://en.wikipedia.org/wiki/Gamut" target="_blank">gamut</a>, so some form of 
+<a href="https://en.wikipedia.org/wiki/Color_management#Gamut_mapping" target="_blank">gamut mapping</a>
+may be helpful. In practice, though, most natural surfaces are not color saturated.
 
-<p>To create <a href="https://en.wikipedia.org/wiki/Metamerism_(color)" target="_blank">metamers</a> of RGB colors with these curves, use the macros whose names start with <code>MakeSp_Meta_</code>.
+<p>To create <a href="https://en.wikipedia.org/wiki/Metamerism_(color)" target="_blank">metamers</a>
+of RGB colors with these curves, use the macros whose names start with <code>MakeSp_Meta_</code>.
 
 <p>
 
 <h4>Hue-Richness-Value</h4>
 
-<p>The color is specified as a 3-D vector that is analogous to, though not identical to, those of the <a href="https://en.wikipedia.org/wiki/HSL_and_HSV" target="_blank">HSV</a> system, which is one of the systems used by most software color pickers. The three vector components are as follows:
+<p>The color is specified as a 3-D vector that is analogous to, though not identical to, those of the
+<a href="https://en.wikipedia.org/wiki/HSL_and_HSV" target="_blank">HSV</a> system,
+which is one of the systems used by most software color pickers.
+The three vector components are as follows:
 
 <dl>
  <dt><strong>Hue</strong>
- <dd>Hues are modulo 360, with red at 0, green at 120, blue at 240, etc., and are calibrated to match <a href="https://en.wikipedia.org/wiki/SRGB" target="_blank">sRGB</a> hues.
+ <dd>Hues are modulo 360, with red at 0, green at 120, blue at 240, etc., and are calibrated to match
+  <a href="https://en.wikipedia.org/wiki/SRGB" target="_blank">sRGB</a> hues.
  <dt><strong>Richness</strong>
- <dd>Richness is the “purity” of the color, similar to HSV saturation. However, due to the complexity of the set of curves returned by <code>MakeSpectrum()</code>, the correspondence with saturation varies with hue.
+ <dd>Richness is the “purity” of the color, similar to HSV saturation.
+  However, due to the complexity of the set of curves returned by <code>MakeSpectrum()</code>, the correspondence with saturation varies with hue.
  <dt><strong>Value</strong>
- <dd>Value is from 0 to 1 with black at 0.0 and the full strength color at 1.0. The correspondence with HSV value varies with hue, and a gray scale value of 1.0 yields a reflectance between 98% and 99%.
+ <dd>Value is from 0 to 1 with black at 0.0 and the full strength color at 1.0.
+  The correspondence with HSV value varies with hue, and a gray scale value of 1.0 yields a reflectance between 98% and 99%.
 </dl>
 
 <h4>Arguments</h4>
@@ -546,11 +649,16 @@ The user can then use <a href="#Prereqs">existing tools</a> to convert the splin
  </tr><tr>
   <td><code>Min</code></td>
   <td>float</td>
-  <td>A minimum reflection level. As no real-world substance is completely black at any wavelength, this argument can be used to constrain the range of the SPD. Note that some far violet wavelengths may go lower than <code>Min</code>.</td>
+  <td>A minimum reflection level.
+   As no real-world substance is completely black at any wavelength, this argument can be used to constrain the range of the SPD.
+   Note that some far violet wavelengths may go lower than <code>Min</code>.
+  </td>
  </tr><tr>
   <td><code>Max</code></td>
   <td>float</td>
-  <td>A maximum reflection level. As no real-world substance is a perfect reflector or transmitter at any wavelength, this argument can be used to constrain the range of the SPD.</td>
+  <td>A maximum reflection level.
+   As no real-world substance is a perfect reflector or transmitter at any wavelength, this argument can be used to constrain the range of the SPD.
+  </td>
  </tr>
 </table>
 
@@ -560,7 +668,8 @@ The user can then use <a href="#Prereqs">existing tools</a> to convert the splin
 
 <h3 id="MakeSp_Bins">MakeSp_Bins (Curve, wlShort, wlLong, Step, Level)</h3>
 
-<p>Converts a spectral curve spline into an array of reflection levels and returns the array. The curve is divided into sections, and the levels of the sections are returned in the array.
+<p>Converts a spectral curve spline into an array of reflection levels and returns the array.
+The curve is divided into sections, and the levels of the sections are returned in the array.
 
 <h4>Arguments</h4>
 <table>
@@ -568,7 +677,9 @@ The user can then use <a href="#Prereqs">existing tools</a> to convert the splin
  <tr>
   <td><code>Curve</code></td>
   <td>spline</td>
-  <td>A spectral curve spline, such as those returned by MakeSpectrum macros, or those defined in the <code>rspd_*.inc</code> files of Lightsys&nbsp;IV. The domain of the spline must be in nanometers.</td>
+  <td>A spectral curve spline, such as those returned by MakeSpectrum macros, or those defined in the <code>rspd_*.inc</code> files of Lightsys&nbsp;IV.
+   The domain of the spline must be in nanometers.
+  </td>
  </tr><tr>
   <td><code>wlShort</code></td>
   <td>float</td>
@@ -584,7 +695,9 @@ The user can then use <a href="#Prereqs">existing tools</a> to convert the splin
  </tr><tr>
   <td><code>Level</code></td>
   <td>float</td>
-  <td>A multiplier of the reflection. For example, 2.0 will double the reflectivity of the spectral curve.</td>
+  <td>A multiplier of the reflection.
+   For example, 2.0 will double the reflectivity of the spectral curve.
+  </td>
  </tr>
 </table>
 
@@ -594,7 +707,8 @@ The user can then use <a href="#Prereqs">existing tools</a> to convert the splin
 
 <p>Converts a spectral curve spline into an array of reflection levels suitable for use with SpectralRender, and returns the array.
 
-<p>Note: This macro calls <code>MakeSp_Bins()</code>; warning and error messages from this macro will report them as from <code>MakeSp_Bins()</code>.
+<p>Note: This macro calls <code>MakeSp_Bins()</code>;
+warning and error messages from this macro will report them as from <code>MakeSp_Bins()</code>.
 
 <h4>Arguments</h4>
 <table>
@@ -602,11 +716,16 @@ The user can then use <a href="#Prereqs">existing tools</a> to convert the splin
  <tr>
   <td><code>Curve</code></td>
   <td>spline</td>
-  <td>A spectral curve spline, such as those returned by MakeSpectrum macros, or those defined in the <code>rspd_*.inc</code> files of Lightsys&nbsp;IV. The domain of the spline must be in nanometers.</td>
+  <td>A spectral curve spline, such as those returned by MakeSpectrum macros,
+   or those defined in the <code>rspd_*.inc</code> files of Lightsys&nbsp;IV.
+   The domain of the spline must be in nanometers.
+  </td>
  </tr><tr>
   <td><code>Level</code></td>
   <td>float</td>
-  <td>A multiplier of the reflection. For example, 2.0 will double the reflectivity of the spectral curve.</td>
+  <td>A multiplier of the reflection.
+   For example, 2.0 will double the reflectivity of the spectral curve.
+  </td>
  </tr>
 </table>
 
@@ -619,6 +738,16 @@ The user can then use <a href="#Prereqs">existing tools</a> to convert the splin
 <table>
  <tr><th>Identifier</th> <th>Type</th> <th>Description</th> <th>Value</th></tr>
  <tr>
+  <td><code>MAKESP_BT709</code></td>
+  <td>float</td>
+  <td>A flag that the ITU-R BT.709 non-linearity function should be used instead of a gamma number.</td>
+  <td>*</td>
+ </tr><tr>
+  <td><code>MAKESP_BT2020</code></td>
+  <td>float</td>
+  <td>A flag that the ITU-R BT.2020 non-linearity function should be used instead of a gamma number.</td>
+  <td>*</td>
+ </tr><tr>
   <td><code>MAKESP_SRGB</code></td>
   <td>float</td>
   <td>A flag that the sRGB non-linearity function should be used instead of a gamma number.</td>
@@ -626,39 +755,86 @@ The user can then use <a href="#Prereqs">existing tools</a> to convert the splin
  </tr><tr>
   <td><code>MAKESPECTRUM_VERSION</code></td>
   <td>float</td>
-  <td>The MakeSpectrum version, in case the scene file needs that information.</td>
-  <td>1.0</td>
+  <td>The MakeSpectrum version.</td>
+  <td>1.1</td>
  </tr>
 </table>
 
 <p>*A <a href="https://en.wikipedia.org/wiki/Black_box" target="_blank">black box</a> value.
 
+<h3>Result Indicators</h3>
+
+<table>
+ <tr><th>Identifier</th> <th>Type</th> <th>Description</th></tr>
+ <tr>
+  <td><code>MakeSp_Hyper</code></td>
+  <td>float</td>
+  <td>Set to <code>true</code> by the macros if the resulting SPD is greater than 1.0 at some wavelengths;
+   that is, if it reflects more light than it receives at those wavelengths;
+   set to <code>false</code> otherwise.
+  </td>
+ </tr><tr>
+  <td><code>MakeSp_Negative</code></td>
+  <td>float</td>
+  <td>Set to <code>true</code> by the macros if the resulting SPD is negative at some wavelengths;
+   set to <code>false</code> otherwise.
+  </td>
+ </tr>
+</table>
+
 <h3>Internal Identifiers</h3>
 
-<p>Any identifiers in <code>makespectrum.inc</code> that are not documented in this manual are considered “private,” and are subject to change or elimination in a future update.
+<p>Any identifiers in <code>makespectrum.inc</code> that are not documented in this manual are considered “private,”
+and are subject to change or elimination in a future update.
 
 <p><a href="#toc">Table of contents</a><hr>
 
 <h2 id="Demo">Notes on the Demo Image Montage</h2>
 
-<p>The top left image is a render of <code>makespectrum_ls4.pov</code>, which uses Lightsys IV to convert spectral curves created by macro <code>MakeSpectrum()</code> to RGB. Since Lightsys IV ultimately works with RGB directly, color distortions are manifest in the glass spheres. This is most striking with the oranges: there is a strong hue drift towards red. Also notice the dull color of the cyan and bluish green glass spheres. Because macro <code>MakeSpectrum()</code> does not add blue and green curves to derive these colors, the results translate to RGB colors with lower HSV values. (The yellows and magentas are less affected, due to the shapes of their curves.) While the lower values don’t affect the color saturation of the opaque spheres, they compound the light attenuation in the glass spheres.
+<p>The top left image is a render of <code>makespectrum_ls4.pov</code>,
+which uses Lightsys IV to convert spectral curves created by macro <code>MakeSpectrum()</code> to RGB.
+Since Lightsys IV ultimately works with RGB directly, color distortions are manifest in the glass spheres.
+This is most striking with the oranges: there is a strong hue drift towards red.
+Also notice the dull color of the cyan and bluish green glass spheres.
+Because macro <code>MakeSpectrum()</code> does not add blue and green curves to derive these colors,
+the results translate to RGB colors with lower HSV value components.
+(The yellows and magentas are less affected, due to the shapes of their curves.)
+While the lower values don’t affect the color saturation of the opaque spheres,
+they compound the light attenuation in the glass spheres.
 
-<p>The top right image is a render of <code>makespectrum_spectral.pov</code>, which uses SpectralRender to convert the spectral curves to sRGB. The hue drift that is seen with RGB transparency is eliminated. The cyan and bluish green glass spheres are much brighter, as they reflect the peak transparency of the spectral curve, rather than the value component of a spectral-to-RGB conversion.
+<p>The top right image is a render of <code>makespectrum_spectral.pov</code>,
+which uses SpectralRender to convert the spectral curves to sRGB.
+The hue drift that is seen with RGB transparency is greatly reduced.
+The cyan and bluish green glass spheres are much brighter,
+as they reflect the peak transparency of the spectral curve,
+rather than the value component of a spectral-to-RGB conversion.
 
-<p>Note, however, the abrupt shift in hue from green to cyan in the opaque spheres. This is because these colors are outside the sRGB <a href="https://en.wikipedia.org/wiki/Gamut" target="_blank">gamut</a> (i.e., the true colors are more brilliant than can be represented on a standard computer screen), and the current version of SpectralRender (version 0.22) maps them into the gamut by merely clipping the out-of-range primary color values, resulting in hue distortions.
+<p>Note, however, the abrupt shift in hue from green to cyan in the opaque spheres.
+This is because these colors are outside the sRGB
+<a href="https://en.wikipedia.org/wiki/Gamut" target="_blank">gamut</a>
+(i.e., the true colors are more brilliant than can be represented on a standard computer screen),
+and the current version of SpectralRender (version 0.22) maps them into the gamut by merely clipping the out-of-range primary color values,
+resulting in hue distortions.
 
-<p>The bottom right image is a render of <code>makespectrum_spectral.pov</code> that uses a <a href="https://github.com/CousinRicky/POV-SpectralRender-mods" target="_blank">modified version of SpectralRender</a> for more sophisticated gamut mapping. The transition from green to blue is much smoother.
+<p>The bottom right image is a render of <code>makespectrum_spectral.pov</code> that uses a
+<a href="https://github.com/CousinRicky/POV-SpectralRender-mods" target="_blank">modified version of SpectralRender</a>
+for more sophisticated gamut mapping.
+The transition from green to blue is much smoother.
 
-<p>The bottom left image is a render of <code>makespectrum_rgb.pov</code>, which does a spectral render of colors within the RGB color space.
+<p>The bottom left image is a render of <code>makespectrum_rgb.pov</code>,
+which does a spectral render of colors within the RGB color space.
 
 <p><a href="#toc">Table of contents</a><hr>
 
 <h2 id="About">About MakeSpectrum</h2>
 
 <address>
- <p>Copyright © 2023 Richard Callwood III. Some rights reserved.
- <p>This library is free software; you can redistribute it and/or modify it under the terms of the <a href="https://www.gnu.org/licenses/old-licenses/lgpl-2.1.html" target="_blank">GNU Lesser General Public License version 2.1</a> as published by the Free Software Foundation.
- <p>This library is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ <p>Copyright © 2023, 2025 Richard Callwood III. Some rights reserved.
+ <p>This library is free software: you can redistribute it and/or modify it under the terms of the
+ <a href="https://www.gnu.org/licenses/lgpl-3.0.html" target="_blank">GNU Lesser General Public License</a>
+ as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+ <p>This library is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+ without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 </address>
 
 <h3>Object Collection Categories</h3>
@@ -669,6 +845,7 @@ The user can then use <a href="#Prereqs">existing tools</a> to convert the splin
    <li>Pigments
    <li>Interiors
    <li>Macros
+   <li>Splines
   </ul>
 </ul>
 
@@ -679,20 +856,42 @@ The user can then use <a href="#Prereqs">existing tools</a> to convert the splin
  <tr>
   <td>1.0</td>
   <td>2023 July 29</td>
-  <td>The module is completed. Formal submission to the Object Collection is expected at a later date.</td>
+  <td>
+   <ul>
+    <li>The module is uploaded to GitHub.
+   </ul>
+  </td>
+ </tr><tr>
+  <td>1.1</td>
+  <td>2025 October 4</td>
+  <td>
+   <ul>
+    <li>The BT.709/BT.2020 transfer function is implemented.
+    <li>Flag variables are set for reflection less than zero or greater than one.
+    <li>The gamut mapping in the SpectralRender demos is changed to luminance-based.
+    <li>The license is upgraded to version 3 of the LGPL.
+   </ul>
+  </td>
  </tr>
 </table>
 
 <h3>Possible Future Development</h3>
 
 <ul>
- <li>BT.709 and BT.2020 non-linear transfer functions.
- <li>Support for the 1998 Adobe RGB color system.
+ <li>Support for the 1998 Adobe RGB and the BT.2020 color systems.
+</ul>
+
+<h3 id="Links">Links</h3>
+
+<ul>
+ <li><a href="https://lib.povray.org/searchcollection/index2.php?objectName=MakeSpectrum&amp;contributorTag=Cousin%20Ricky">Official MakeSpectrum repository</a>
+  and <a href="https://github.com/CousinRicky/POV-MakeSpectrum">GitHub mirror</a>
+ <li><a href="https://news.povray.org/povray.object-collection/">Object Collection discussion</a>
 </ul>
 
 <h3>Acknowledgments</h3>
 
-<p>The SPDs of the ColorChecker® swatches included in SpectralRender and reflective SPDs included in Lightsys&nbsp;IV were used as guides in developing the SPD curves used for the metamers.
+<p>The SPDs of the ColorChecker® swatches included in SpectralRender and reflective SPDs included in Lightsys&nbsp;IV were used as guides in developing the “natural” SPD curves.
 
 <p><a href="#toc">Table of contents</a>
 

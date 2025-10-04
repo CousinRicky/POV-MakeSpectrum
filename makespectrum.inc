@@ -1,30 +1,33 @@
-/* makespectrum.inc version 1.0
+/* makespectrum.inc version 1.1
  * Persistence of Vision Raytracer include file
- * POV-Ray Object Collection
+ * A proposed POV-Ray Object Collection module
  *
  * Generates reflective spectral curves for spectral rendering without recourse
  * to a spectrophotometer. The user submits a color specification, and a spline
  * is returned.  The user can then convert the spline to POV-Ray's native RGBFT
  * format using existing tools, such as Lightsys IV or SpectralRender.
  *
- * Copyright (C) 2023 Richard Callwood III.  Some rights reserved.
- * This file is licensed under the terms of the CC-LGPL
- * a.k.a. the GNU Lesser General Public License version 2.1.
+ * Copyright (C) 2023, 2025 Richard Callwood III.  Some rights reserved.
+ * This file is licensed under the terms of the GNU-LGPL.
  *
- * This library is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Lesser General Public
- * License version 2.1 as published by the Free Software Foundation.
+ * This library is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as published
+ * by the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
  *
  * This library is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  Please
- * visit https://www.gnu.org/licenses/old-licenses/lgpl-2.1.html for
- * the text of the GNU Lesser General Public License version 2.1.
+ * visit https://www.gnu.org/licenses/lgpl-3.0.html for the text
+ * of the GNU Lesser General Public License version 3.
  *
  * Vers  Date         Comments
  * ----  ----         --------
  *       2014-Apr-10  Work is started.
  * 1.0   2023-Jul-29  Debugged and uploaded.
+ *       2025-Jan-07  The BT.709/2020 transfer function is added.
+ *       2025-Aug-17  Flags are set for reflection < 0 or > 1.
+ * 1.1   2025-Oct-04  The license is upgraded to LGPL 3.
  *
  * Implementation note: due to POV-Ray namespace scope leakage, local variables
  * and function parameters (other than x, y, and z) *must* be prefixed.
@@ -33,17 +36,24 @@
 #declare MakeSpectrum_Inc_Temp = version;
 #version max (3.5, min (3.8, version)); // Bracket the POV version.
 
-#declare MAKESPECTRUM_VERSION = 1.0;
+#declare MAKESPECTRUM_VERSION = 1.1;
 #ifdef (View_POV_Include_Stack)
-  #debug "#include \"makespectrum.inc\" //version 1.0\n"
+  #debug "#include \"makespectrum.inc\" //version 1.1\n"
   #debug concat ("  #version ", str (version, 0, 2), ";\n")
 #end
 
-// Code for non-linear transfer function:
+// Codes for non-linear transfer functions:
 #declare MAKESP_SRGB = -999;
+#declare MAKESP_BT709 = 709;
+#declare MAKESP_BT2020 = 2020;
 
+// Global parameters:
 #ifndef (MakeSp_Diffuse) #declare MakeSp_Diffuse = 0.6; #end
 #ifndef (MakeSp_Gamma) #declare MakeSp_Gamma = MAKESP_SRGB; #end
+
+// Error flags:
+#declare MakeSp_Negative = false;
+#declare MakeSp_Hyper = false;
 
 #include "colors.inc"
 #include "math.inc"
@@ -472,6 +482,14 @@
         MakeSp__fn_sRGB (makesp_nnC.blue)
       >;
       #break
+    #case (MAKESP_BT709)
+    #case (MAKESP_BT2020)
+      #local makesp_Cadj =
+      < MakeSp__fn_BT2020 (makesp_nnC.red),
+        MakeSp__fn_BT2020 (makesp_nnC.green),
+        MakeSp__fn_BT2020 (makesp_nnC.blue)
+      >;
+      #break
     #else #if (makesp_G > 0)
       #local makesp_Cadj =
       < pow (makesp_nnC.red, makesp_G),
@@ -483,10 +501,10 @@
       ( s_Caller, "(): ",
         #if (Gamma = MAKESP__DEFAULT)
           "MakeSp_Gamma was set to ", str (MakeSp_Gamma, 0, 6),
-          ".  MakeSp_Gamma must be positive or MAKESP_SRGB."
+          ".  MakeSp_Gamma must be positive or a special transfer function code."
         #else
           "Non-positive Gamma ", str (Gamma, 0, 6),
-          " was given.  Gamma must be positive or MAKESP_SRGB."
+          " was given.  Gamma must be positive or a special transfer function code."
         #end
       )
     #end
@@ -529,6 +547,20 @@
 }
 #declare MakeSp__fn_Hue = function (x)
 { MakeSp__fn_Hdomain (mod (x, 360))
+}
+
+//----------------------------------------------------------
+// Decodes BT.709/2020 channel value to linear.
+#local MAKESP_2020B = 0.018053968510807;
+#local MAKESP_2020A = 1 + 5.5 * MAKESP_2020B;
+#local MAKESP_2020X =
+  MAKESP_2020A * pow (MAKESP_2020B, 0.45) - MAKESP_2020A + 1;
+#declare MakeSp__fn_BT2020 = function (x)
+{ select
+  ( x - MAKESP_2020X,
+    x / 4.5,
+    pow ((x + MAKESP_2020A - 1) / MAKESP_2020A, 1 / 0.45)
+  )
 }
 
 //----------------------------------------------------------
@@ -583,12 +615,18 @@
     ( s_Caller, " (<", vstr (3, <0,0,0> + Original_color, ", ", 0, 3),
       ">) has negative reflection at some wavelengths."
     )
+    #declare MakeSp_Negative = true;
+  #else
+    #declare MakeSp_Negative = false;
   #end
   #if (max (makesp_Blevel, makesp_Glevel, makesp_Rlevel) > 1)
     #warning concat
     ( s_Caller, " (<", vstr (3, <0,0,0> + Original_color, ", ", 0, 3),
       ">) reflects more light than it receives at some wavelengths."
     )
+    #declare MakeSp_Hyper = true;
+  #else
+    #declare MakeSp_Hyper = false;
   #end
   spline
   { floor (MAKESP__BLONG), makesp_Blevel
@@ -815,12 +853,18 @@
       ( s_Caller, " (<", vstr (3, <0,0,0> + Original_color, ", ", 0, 3),
         ">) has negative reflection at some wavelengths."
       )
+      #declare MakeSp_Negative = true;
+    #else
+      #declare MakeSp_Negative = false;
     #end
     #if (makesp_Hi)
       #warning concat
       ( s_Caller, " (<", vstr (3, <0,0,0> + Original_color, ", ", 0, 3),
         ">) reflects more light than it receives at some wavelengths."
       )
+      #declare MakeSp_Hyper = true;
+    #else
+      #declare MakeSp_Hyper = false;
     #end
   }
 #end
@@ -898,9 +942,15 @@ RANGE CHECKS
   #end
   #if (makesp_Neg)
     #warning concat (makesp_This, "Negative reflection at some wavelengths.")
+    #declare MakeSp_Negative = true;
+  #else
+    #declare MakeSp_Negative = false;
   #end
   #if (makesp_Hi)
     #warning concat (makesp_This, "Reflects more light than it receives at some wavelengths.")
+    #declare MakeSp_Hyper = true;
+  #else
+    #declare MakeSp_Hyper = false;
   #end
   makesp_Bins
 #end
