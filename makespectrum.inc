@@ -1,4 +1,4 @@
-/* makespectrum.inc version 1.1
+/* makespectrum.inc version 1.1-rc.2
  * Persistence of Vision Raytracer include file
  * A proposed POV-Ray Object Collection module
  *
@@ -24,7 +24,7 @@
  * Vers  Date         Comments
  * ----  ----         --------
  *       2014-Apr-10  Work is started.
- * 1.0   2023-Jul-29  Debugged and uploaded.
+ * 1.0   2023-Jul-29  Debugged and uploaded to GitHub.
  *       2025-Jan-07  The BT.709/2020 transfer function is added.
  *       2025-Aug-17  Flags are set for reflection < 0 or > 1.
  * 1.1   2025-Oct-04  The license is upgraded to LGPL 3.
@@ -38,7 +38,7 @@
 
 #declare MAKESPECTRUM_VERSION = 1.1;
 #ifdef (View_POV_Include_Stack)
-  #debug "#include \"makespectrum.inc\" //version 1.1\n"
+  #debug "#include \"makespectrum.inc\" //version 1.1-rc.2\n"
   #debug concat ("  #version ", str (version, 0, 2), ";\n")
 #end
 

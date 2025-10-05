@@ -1,4 +1,4 @@
-/* makespectrum_spectral.pov version 1.1
+/* makespectrum_spectral.pov version 1.1-rc.2
  * Persistence of Vision Raytracer scene description file
  * A proposed POV-Ray Object Collection demo
  *
@@ -29,7 +29,7 @@
  * Vers.  Date         Comments
  * -----  ----         --------
  *        2014-Oct-18  Created.
- * 1.0    2023-Jul-29  Completed and uploaded.
+ * 1.0    2023-Jul-29  Completed and uploaded to GitHub.
  *        2024-Dec-22  Y-based gamut mapping is recognized.
  * 1.1    2025-Oct-04  The license is upgraded to LGPL 3.
  */
