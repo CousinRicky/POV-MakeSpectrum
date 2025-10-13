@@ -1,4 +1,4 @@
-/* makespectrum.inc version 1.1-rc.2
+/* makespectrum.inc version 1.1-rc.3
  * Persistence of Vision Raytracer include file
  * A proposed POV-Ray Object Collection module
  *
@@ -38,7 +38,7 @@
 
 #declare MAKESPECTRUM_VERSION = 1.1;
 #ifdef (View_POV_Include_Stack)
-  #debug "#include \"makespectrum.inc\" //version 1.1-rc.2\n"
+  #debug "#include \"makespectrum.inc\" //version 1.1-rc.3\n"
   #debug concat ("  #version ", str (version, 0, 2), ";\n")
 #end
 

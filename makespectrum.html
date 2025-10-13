@@ -2,13 +2,13 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>MakeSpectrum 1.1-rc.2 User Manual | POV-Ray Object Collection (Proposed)</title>
+<title>MakeSpectrum 1.1-rc.3 User Manual | POV-Ray Object Collection (Proposed)</title>
 <link rel="stylesheet" type="text/css" href="makespectrum.css">
 </head>
 
 <body>
 
-<h1>MakeSpectrum 1.1-rc.2 User&nbsp;Manual</h1>
+<h1>MakeSpectrum 1.1-rc.3 User&nbsp;Manual</h1>
 
 <h2>Abstract</h2>
 
@@ -179,7 +179,9 @@ The identifier <code>View_POV_Include_Stack</code> from the standard include fil
 <p>Lightsys and SpectralRender are not part of the Object Collection, so if you use these, there is no guarantee that their identifiers will not conflict with those of compliant Object Collection modules.
 If necessary, most Lightsys identifiers can be destroyed by macro <code>CIE_ReleaseMemory()</code> after there is no further use of the features of Lightsys and SpectralRender.
 (The identifiers that remain are those defined in <code>lightsys.inc</code>, <code>lightsys_colors.inc</code>, and <code>lightsys_constants.inc</code>.)
-SpectralRender does not have a similar deallocation macro, but as of the release of MakeSpectrum 1.1, its identifiers do not conflict with any compliant Object Collection modules.
+SpectralRender does not have a similar deallocation macro,
+but as of the release of MakeSpectrum 1.1, there is only one compliant Object Collection module with a potential conflict:
+GemCuts shares a prefix with one of SpectralRender’s macros, but GemCuts has been written to avoid that specific conflict.
 
 <h3 id="Usage">Usage</h3>
 

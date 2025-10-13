@@ -1,4 +1,4 @@
-/* makespectrum_spectral.pov version 1.1-rc.2
+/* makespectrum_spectral.pov version 1.1-rc.3
  * Persistence of Vision Raytracer scene description file
  * A proposed POV-Ray Object Collection demo
  *
