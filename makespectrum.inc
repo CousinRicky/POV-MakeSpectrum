@@ -1,4 +1,4 @@
-/* makespectrum.inc version 1.1
+/* makespectrum.inc version 1.2-beta.1
  * Persistence of Vision Raytracer include file
  * A proposed POV-Ray Object Collection module
  *
@@ -21,14 +21,16 @@
  * visit https://www.gnu.org/licenses/lgpl-3.0.html for the text
  * of the GNU Lesser General Public License version 3.
  *
- * Vers.  Date         Comments
- * -----  ----         --------
+ * Vers  Date         Comments
+ * ----  ----         --------
  *       2014-Apr-10  Work is started.
  * 1.0   2023-Jul-29  Debugged and uploaded to GitHub.
  *       2025-Jan-07  The BT.709/2020 transfer function is added.
  *       2025-Aug-17  Flags are set for reflection < 0 or > 1.
  *       2025-Oct-04  The license is upgraded to LGPL 3.
  * 1.1   2025-Dec-28  Some corrections are made on the purple line.
+ * 1.2   2025-Dec-29  The purple line SPDs are remodeled, in particular
+ *                    yielding brighter magentas and reds.
  *
  * Implementation note: due to POV-Ray namespace scope leakage, local variables
  * and function parameters (other than x, y, and z) *must* be prefixed.
@@ -37,9 +39,9 @@
 #declare MakeSpectrum_Inc_Temp = version;
 #version max (3.5, min (3.8, version)); // Bracket the POV version.
 
-#declare MAKESPECTRUM_VERSION = 1.1;
+#declare MAKESPECTRUM_VERSION = 1.2;
 #ifdef (View_POV_Include_Stack)
-  #debug "#include \"makespectrum.inc\" //version 1.1\n"
+  #debug "#include \"makespectrum.inc\" //version 1.2-beta.1\n"
   #debug concat ("  #version ", str (version, 0, 2), ";\n")
 #end
 
@@ -70,43 +72,40 @@
 
 //------------------- Hue calibration ----------------------
 
-#declare MAKESP__RED = -1.720;
-#declare MAKESP__BLUE = 237.012;
-#declare MAKESP__VIOLET = 259.783;
-#declare MAKESP__MAGENTA = 292.531;
+#declare MAKESP__RED = 0.050;
+#declare MAKESP__BLUE = 239.909;
+#declare MAKESP__VIOLET = 268.891;
+#declare MAKESP__MAGENTA = 305.392;
 
 #declare makesp__Hue_to_single_peak = spline
 { natural_spline
-  MAKESP__RED, 650,
-   -1.249, 647,
-   -0.729, 644,
-   -0.154, 641,
-    0.476, 638,
-    1.159, 635,
-    1.895, 632,
-    2.689, 629,
-    3.543, 626,
-    4.460, 623,
-    5.442, 620,
-    6.493, 617,
-    7.614, 614,
-    8.808, 611,
-   10.075, 608,
-   11.419, 605,
-   12.839, 602,
-   14.338, 599,
-   15.914, 596,
-   17.567, 593,
-   19.295, 590,
-   21.095, 587,
-   22.964, 584,
-   24.895, 581,
-   26.884, 578,
-   28.922, 575,
-   31.001, 572,
-   33.110, 569,
-   35.239, 566,
-   37.521, 563,
+  MAKESP__RED, 640
+    0.698, 637,
+    1.398, 634,
+    2.153, 631,
+    2.966, 628,
+    3.841, 625,
+    4.780, 622,
+    5.785, 619,
+    6.859, 616,
+    8.004, 613,
+    9.222, 610,
+   10.515, 607,
+   11.884, 604,
+   13.330, 601,
+   14.855, 598,
+   16.457, 595,
+   18.135, 592,
+   19.887, 589,
+   21.711, 586,
+   23.601, 583,
+   25.552, 580,
+   27.558, 577,
+   29.611, 574,
+   31.701, 571,
+   33.818, 568,
+   35.950, 565,
+   38.432, 562,
    40.558, 560,
    41.799, 559,
    43.181, 558,
@@ -171,51 +170,48 @@
   231.457, 459,
   233.492, 456,
   235.337, 453,
-  MAKESP__BLUE, 450
+  237.012, 450,
+  238.530, 447,
+  MAKESP__BLUE, 444
 }
 
 #declare makesp__Hue_to_violet = spline
 { natural_spline
-  MAKESP__BLUE, 450,
-  237.497, 448,
-  237.957, 446,
-  238.426, 444,
-  238.923, 442,
-  239.472, 440,
-  240.105, 438,
-  240.856, 436,
-  242.908, 432,
-  246.180, 428,
-  251.470, 424,
+  MAKESP__BLUE, 444,
+  240.879, 442,
+  241.692, 440,
+  242.655, 438,
+  243.836, 436,
+  247.107, 432,
+  252.033, 428,
+  259.145, 424,
   MAKESP__VIOLET, 420
 }
 
 #declare makesp__Hue_to_purple = spline
 { natural_spline
-  MAKESP__VIOLET, 600,
-  264.066, 595,
-  268.891, 590,
+  MAKESP__VIOLET, 590,
   274.217, 585,
   279.983, 580,
   286.115, 575,
-  MAKESP__MAGENTA, 570
+  292.531, 570,
+  299.155, 565,
+  MAKESP__MAGENTA, 560
 }
 
 #declare makesp__Hue_to_magenta = spline
 { natural_spline
   MAKESP__MAGENTA, 1.0,
-  295.168, 0.95,
-  298.090, 0.90,
-  301.317, 0.85,
-  304.612, 0.80,
-  307.915, 0.75,
-  311.225, 0.70,
-  317.864, 0.60,
-  324.530, 0.50,
-  331.225, 0.40,
-  337.946, 0.30,
-  344.696, 0.20,
-  351.474, 0.10,
+  308.081, 0.95,
+  310.775, 0.90,
+  316.177, 0.80,
+  321.597, 0.70,
+  327.035, 0.60,
+  332.491, 0.50,
+  337.966, 0.40,
+  343.459, 0.30,
+  348.971, 0.20,
+  354.501, 0.10,
   MAKESP__RED + 360, 0.0
 }
 
@@ -252,28 +248,28 @@
 // with value increased to compensate for the violet drop-off
 
 #declare makesp__Metadjust_red = spline
-{ natural_spline
-  MAKESP__RED, <0.7534, 0.7220>,
-   -1, <0.8326, 0.8066>,
-    0, <0.9210, 0.9056>
+{ linear_spline
+  360, <0.9248, 0.9101>,
+  //360.025, <0.9252, 0.9101>,
+  360 + MAKESP__RED, <0.9256, 0.9101>
 }
 #declare makesp__Metadjust_orange = spline
 { natural_spline
-    0, <0.9210, 0.9056>,
-    1, <1.0072, 0.9884>,
+    MAKESP__RED, <0.9256, 0.9101>,
+    1, <1.0072, 0.9885>,
     2, <1.0811, 1.0589>,
-    4, <1.1991, 1.1699>,
+    4, <1.1992, 1.1699>,
     7, <1.3209, 1.2811>,
    11, <1.4153, 1.3620>,
    16, <1.4674, 1.3987>,
    21, <1.4768, 1.3948>,
    26, <1.4606, 1.3679>,
-   30, <1.4357, 1.3365>,
+   30, <1.4356, 1.3365>,
    32, <1.4203, 1.3187>,
    34, <1.4032, 1.2999>,
-   35, <1.3942, 1.2902>,
+   35, <1.3940, 1.2900>,
    37, <1.3734, 1.2687>,
-   38, <1.3586, 1.2539>,
+   38, <1.3588, 1.2541>,
    40, <1.3243, 1.2201>,
    42, <1.2861, 1.1829>,
    46, <1.2066, 1.1060>,
@@ -335,50 +331,57 @@
   220, <1.0830, 0.8918>,
   225, <1.0902, 0.9379>,
   230, <1.0823, 0.9726>,
-  233, <1.0661, 0.9833>,
-  235, <1.0483, 0.9837>,
-  236, <1.0365, 0.9812>,
-  MAKESP__BLUE, <1.0226, 0.9765>
+  234, <1.0580, 0.9843>,
+  237, <1.0228, 0.9766>,
+  239, <0.9871, 0.9591>,
+  MAKESP__BLUE, <0.9668, 0.9468>
 }
 #declare makesp__Metadjust_blue = spline
-{ natural_spline
-  MAKESP__BLUE, <1.0226, 0.9765>,
-  238, <1.0041, 0.9686>,
-  239, <0.9803, 0.9559>,
-  240, <0.9547, 0.9421>
+{ linear_spline
+  MAKESP__BLUE, <0.9668, 0.9468>,
+  239.950, <0.9653, 0.9465>,
+  240, <0.9652, 0.9463>
 }
 #declare makesp__Metadjust_violet = spline
 { natural_spline
-  240, <0.9547, 0.9421>,
-  241, <0.9456, 0.9295>,
-  243, <0.9305, 0.9091>,
-  246, <0.9143, 0.8871>,
-  250, <0.8996, 0.8662>,
-  255, <0.8870, 0.8471>,
-  MAKESP__VIOLET, <0.8775, 0.8321>
+  240, <0.9652, 0.9463>,
+  241, <0.9606, 0.9395>,
+  242, <0.9541, 0.9308>,
+  243, <0.9483, 0.9230>,
+  246, <0.9340, 0.9039>,
+  250, <0.9205, 0.8851>,
+  255, <0.9081, 0.8670>,
+  260, <0.8982, 0.8523>,
+  265, <0.8897, 0.8397>,
+  MAKESP__VIOLET, <0.8834, 0.8306>
 }
 #declare makesp__Metadjust_purple = spline
 { natural_spline
-  MAKESP__VIOLET, <0.8775, 0.8321>,
-  268, <0.8830, 0.8308>,
-  276, <0.8854, 0.8291>,
-  283, <0.8847, 0.8273>,
-  287, <0.8829, 0.8261>,
+  MAKESP__VIOLET, <0.8834, 0.8306>,
+  275, <0.8853, 0.8293>,
+  280, <0.8854, 0.8281>,
+  285, <0.8839, 0.8267>,
   290, <0.8807, 0.8251>,
-  MAKESP__MAGENTA, <0.8784, 0.8242>
+  295, <0.8756, 0.8233>,
+  298, <0.8714, 0.8221>,
+  300, <0.8686, 0.8217>
 }
 #declare makesp__Metadjust_magenta = spline
 { natural_spline
-  MAKESP__MAGENTA, <0.8784, 0.8242>,
-  296, <0.8228, 0.7701>,
-  298, <0.7939, 0.7420>,
-  300, <0.7670, 0.7158>
+  300, <0.8686, 0.8217>,
+  303, <0.9089, 0.8667>,
+  MAKESP__MAGENTA, <0.9405, 0.9029>
 }
 #declare makesp__Metadjust_rose = spline
 { linear_spline
-  300, <0.7670, 0.7158>,
-  329, <0.7601, 0.7189>,
-  360 + MAKESP__RED, <0.7534, 0.7220>
+  MAKESP__MAGENTA, <0.9405, 0.9029>,
+  330, <0.9334, 0.9061>,
+  340, <0.9305, 0.9075>,
+  350, <0.9277, 0.9088>,
+  355, <0.9263, 0.9094>,
+  358, <0.9254, 0.9098>,
+  359, <0.9251, 0.9099>,
+  360, <0.9256, 0.9101>
 }
 
 //-------------------- RGB Parameters ----------------------
@@ -540,14 +543,10 @@
 // Silently bring a hue within the spline domains:
 //   force the +/- rollover point to our red hue.
 #declare MakeSp__fn_Hdomain = function (x)
-{ select
-  ( x - MAKESP__RED,
-    x + 360,
-    select (x - 360 - MAKESP__RED, x, x - 360)
-  )
+{ select (x - MAKESP__RED, x + 360, x)
 }
 #declare MakeSp__fn_Hue = function (x)
-{ MakeSp__fn_Hdomain (mod (x, 360))
+{ MakeSp__fn_Hdomain (mod (x, 360) + select (x, 360, 0))
 }
 
 //----------------------------------------------------------
@@ -644,26 +643,27 @@
 #end
 
 //----------------------------------------------------------
-// Constructs a spectral curve for a metamer of an RGB color.
+// Constructs a "natural"-esque SPD that is a metamer of an RGB color.
 #macro MakeSp__Metamer (s_Caller, Original_color, hsv_Color, Gamma, Diffuse)
   #local makesp_D = MakeSp__Check_diffuse (s_Caller, Diffuse);
   #local makesp_Hsv =
     CRGB2HSV (MakeSp__Decode_gamma (s_Caller, CHSV2RGB (hsv_Color), Gamma));
   #local makesp_H = MakeSp__fn_Hue (makesp_Hsv.x);
+  //#debug concat ("makesp_H = ", str (makesp_H, 0, 4), "\n")
  // Get metamer adjustment
   #local makesp_Adj =
     #switch (makesp_H)
-      #range (MAKESP__RED, 0) makesp__Metadjust_red (makesp_H); #break
-      #range (0, 60) makesp__Metadjust_orange (makesp_H); #break
+      //#range (0, MAKESP__RED)
+      #range (360, MAKESP__RED + 360) makesp__Metadjust_red (makesp_H); #break
+      #range (MAKESP__RED, 60) makesp__Metadjust_orange (makesp_H); #break
       #range (60, 120) makesp__Metadjust_chartreuse (makesp_H); #break
       #range (120, 180) makesp__Metadjust_seagreen (makesp_H); #break
       #range (180, MAKESP__BLUE) makesp__Metadjust_cerulean (makesp_H); #break
       #range (MAKESP__BLUE, 240) makesp__Metadjust_blue (makesp_H); #break
       #range (240, MAKESP__VIOLET) makesp__Metadjust_violet (makesp_H); #break
-      #range (MAKESP__VIOLET, MAKESP__MAGENTA)
-        makesp__Metadjust_purple (makesp_H); #break
-      #range (MAKESP__MAGENTA, 300) makesp__Metadjust_magenta (makesp_H); #break
-      #range (300, 360 + MAKESP__RED) makesp__Metadjust_rose (makesp_H); #break
+      #range (MAKESP__VIOLET, 300) makesp__Metadjust_purple (makesp_H); #break
+      #range (300, MAKESP__MAGENTA) makesp__Metadjust_magenta (makesp_H); #break
+      #range (MAKESP__MAGENTA, 360) makesp__Metadjust_rose (makesp_H); #break
     #end
  // Create the SPD.  N.B. The 0.9864 compensates for the violet drop-off.
   #local makesp_Term =
@@ -714,15 +714,15 @@
   #local makesp_Color = makesp_Hrv.z - makesp_Gray; // saturated contribution
   #if (makesp_Hrv.x > MAKESP__MAGENTA) // magentas
     #local makesp_Violet = makesp__Hue_to_magenta (makesp_Hrv.x).y;
-    #local makesp_Stop = 650;
+    #local makesp_Stop = 640;
   #else #if (makesp_Hrv.x > MAKESP__VIOLET) // purples
     #local makesp_Red = makesp__Hue_to_purple (makesp_Hrv.x).y;
     #local makesp_Stop = makesp_Red + 80;
   #else #if (makesp_Hrv.x > MAKESP__BLUE) // violets
     #local makesp_Peak = makesp__Hue_to_violet (makesp_Hrv.x).y;
-    #local makesp_RShort = 2 * makesp_Peak - 240;
-    #local makesp_RSpan = (makesp_Peak - 360) * 4/3;
-    #local makesp_RLevel = sqrt ((450 - makesp_Peak) / 30);
+    #local makesp_RShort = 2 * makesp_Peak - 250;
+    #local makesp_RSpan = 80;
+    #local makesp_RLevel = sqrt ((444 - makesp_Peak) / 24);
     #local makesp_Stop = makesp_RShort + makesp_RSpan;
   #else // other hues
     #local makesp_Peak = makesp__Hue_to_single_peak (makesp_Hrv.x).y;
@@ -787,7 +787,7 @@
           #else #if (makesp_Wl < 530)
             MakeSp__fn_Wave ((makesp_Wl - 420) / 110) * makesp_Violet;
           #else
-            MakeSp__fn_Wave (min (0, makesp_Wl - 650) / 80);
+            MakeSp__fn_Wave (min (0, makesp_Wl - 640) / 80);
           #end
           #end
       #else #if (makesp_Hrv.x > MAKESP__VIOLET) //--- purples ---
@@ -807,10 +807,12 @@
         #local makesp_Color_part =
           #if (makesp_Wl < makesp_Peak)
             MakeSp__fn_Wave
-            ( (makesp_Wl - makesp_Peak) / (0.5 * makesp_Peak - 145)
+            ((makesp_Wl - makesp_Peak) / (5/8 * makesp_Peak - 197.5)
             );
-          #else #if (makesp_Wl < 530)
-            MakeSp__fn_Wave ((makesp_Wl - makesp_Peak) / (530 - makesp_Peak));
+          #else #if (makesp_Wl < 635 - makesp_Peak / 4)
+            MakeSp__fn_Wave
+            ((makesp_Wl - makesp_Peak) / (635 - 1.25 * makesp_Peak)
+            );
           #else #if (makesp_Wl <= makesp_RShort)
             0;
           #else

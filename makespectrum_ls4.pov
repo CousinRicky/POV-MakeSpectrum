@@ -1,4 +1,4 @@
-/* makespectrum_ls4.pov version 1.1 2025-Dec-28
+/* makespectrum_ls4.pov version 1.2-beta.1
  * Persistence of Vision Raytracer scene description file
  * A proposed POV-Ray Object Collection demo
  *
@@ -27,6 +27,7 @@
  *        2014-Oct-18  Created.
  * 1.0    2023-Jul-29  Completed and uploaded to GitHub.
  * 1.1    2025-Oct-04  The license is upgraded to LGPL 3.
+ * 1.2    2025-Dec-29  No change.
  */
 #version max (3.5, min (3.8, version));
 
